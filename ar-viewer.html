@@ -292,7 +292,7 @@
         /* Tombol Rotasi Otomatis */
         .auto-rotate-button {
             position: absolute;
-            top: 250px; /* Diubah dari 400px ke 210px agar tepat di bawah tombol fullscreen */
+            top: 100px; /* Diubah dari 400px ke 210px agar tepat di bawah tombol fullscreen */
             left: 10px;
             width: 50px;
             height: 50px;
@@ -798,7 +798,7 @@
             exposure="1"
             auto-rotate
             auto-rotate-delay="0"
-            rotation-per-second="30deg"
+            rotation-per-second="15deg"
         >
         </model-viewer>
 
@@ -945,7 +945,7 @@
             let isAutoRotateActive = true; // Default aktif
 
             // KECEPATAN ROTASI FIX 
-            const ROTATION_SPEED = "30deg";
+            const ROTATION_SPEED = "15deg";
 
             // Konfigurasi file MP3 default untuk setiap instrumen
             const defaultSounds = {
@@ -1534,6 +1534,7 @@
     </script>
 </body>
 </html>
+
 
 
 
