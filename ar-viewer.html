@@ -289,6 +289,47 @@
             transform: scale(0.95);
         }
 
+        /* Tombol Rotasi Otomatis */
+        .auto-rotate-button {
+            position: absolute;
+            top: 400px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            z-index: 4;
+        }
+
+        .auto-rotate-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        .auto-rotate-button:active {
+            transform: scale(0.95);
+        }
+
+        .auto-rotate-button.active {
+            background: rgba(102, 126, 234, 0.8);
+            animation: rotateIcon 2s linear infinite;
+        }
+
+        @keyframes rotateIcon {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* Overlay instruksi */
         .instructions-overlay {
             position: absolute;
@@ -507,12 +548,16 @@
                 max-width: 120px;
             }
 
-            .fullscreen-button {
+            .fullscreen-button, .auto-rotate-button {
                 bottom: 20px;
                 right: 15px;
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
+            }
+
+            .auto-rotate-button {
+                top: 180px;
             }
 
             .ar-mode-panel {
@@ -570,12 +615,16 @@
                 font-size: 10px;
             }
 
-            .fullscreen-button {
+            .fullscreen-button, .auto-rotate-button {
                 bottom: 50px;
                 right: 10px;
                 width: 35px;
                 height: 35px;
                 font-size: 14px;
+            }
+
+            .auto-rotate-button {
+                top: 160px;
             }
 
             .ar-mode-panel {
@@ -642,12 +691,16 @@
                 margin-top: 5px;
             }
 
-            .fullscreen-button {
+            .fullscreen-button, .auto-rotate-button {
                 bottom: 60px;
                 right: 10px;
                 width: 35px;
                 height: 35px;
                 font-size: 14px;
+            }
+
+            .auto-rotate-button {
+                top: 160px;
             }
 
             .ar-mode-panel {
@@ -692,12 +745,16 @@
                 font-size: 12px;
             }
 
-            .fullscreen-button {
+            .fullscreen-button, .auto-rotate-button {
                 bottom: 15px;
                 right: 10px;
                 width: 32px;
                 height: 32px;
                 font-size: 12px;
+            }
+
+            .auto-rotate-button {
+                top: 140px;
             }
 
             .ar-mode-panel {
@@ -739,6 +796,9 @@
             disable-tap
             shadow-intensity="1"
             exposure="1"
+            auto-rotate
+            auto-rotate-delay="0"
+            rotation-per-second="40deg"
         >
         </model-viewer>
 
@@ -772,6 +832,11 @@
             <span id="fullscreen-icon">⛶</span>
         </button>
 
+        <!-- Tombol Rotasi Otomatis -->
+        <button class="auto-rotate-button active" id="auto-rotate-button">
+            <span id="rotate-icon">⟳</span>
+        </button>
+
         <!-- Overlay instruksi -->
         <div class="instructions-overlay hidden" id="instructions-overlay">
             <button class="close-instructions" id="close-instructions">×</button>
@@ -783,6 +848,7 @@
                 <p><span class="instruction-icon"></span>▶️ Tekan play untuk memainkan musik latar</p>
                 <p><span class="instruction-icon"></span>📁 Gunakan "Pilih Musik" untuk ganti lagu</p>
                 <p><span class="instruction-icon"></span>⛶ Tekan tombol layar penuh untuk pengalaman lebih imersif</p>
+                <p><span class="instruction-icon"></span>⟳ Tekan tombol rotasi untuk mengaktifkan/menonaktifkan rotasi otomatis</p>
                 <p><span class="instruction-icon"></span>🔄 Ganti mode AR untuk pengalaman berbeda</p>
             </div>
         </div>
@@ -865,6 +931,10 @@
             const arToLifeButton = document.getElementById('ar-to-life-button');
             const lifeToArButton = document.getElementById('life-to-ar-button');
 
+            // Elemen untuk rotasi otomatis
+            const autoRotateButton = document.getElementById('auto-rotate-button');
+            const rotateIcon = document.getElementById('rotate-icon');
+
             // Variabel untuk track audio
             let audioContext;
             let audioBuffers = {};
@@ -872,6 +942,10 @@
             let currentMode = 'ar-to-life';
             let currentlyPlayingInstrument = null;
             let instrumentLoopInterval = null;
+            let isAutoRotateActive = true; // Default aktif
+
+            // KECEPATAN ROTASI FIX 
+            const ROTATION_SPEED = "50deg";
 
             // Konfigurasi file MP3 default untuk setiap instrumen
             const defaultSounds = {
@@ -1204,6 +1278,50 @@
                 }
             }
 
+            // Fungsi untuk mengatur rotasi otomatis
+            function setupAutoRotate() {
+                // Event listener untuk tombol rotasi otomatis
+                autoRotateButton.addEventListener('click', toggleAutoRotate);
+                
+                // Set rotasi otomatis aktif secara default 
+                modelViewer.setAttribute('auto-rotate', '');
+                modelViewer.setAttribute('auto-rotate-delay', '0');
+                modelViewer.setAttribute('rotation-per-second', ROTATION_SPEED);
+                
+                console.log(`Rotasi otomatis diaktifkan dengan kecepatan: ${ROTATION_SPEED}`);
+            }
+
+            // Fungsi untuk toggle rotasi otomatis
+            function toggleAutoRotate() {
+                isAutoRotateActive = !isAutoRotateActive;
+                
+                if (isAutoRotateActive) {
+                    // Aktifkan rotasi otomatis 
+                    modelViewer.setAttribute('auto-rotate', '');
+                    modelViewer.setAttribute('auto-rotate-delay', '0');
+                    modelViewer.setAttribute('rotation-per-second', ROTATION_SPEED);
+                    autoRotateButton.classList.add('active');
+                    
+                    errorMessage.textContent = 'Rotasi otomatis diaktifkan';
+                    errorMessage.style.background = 'rgba(102, 126, 234, 0.7)';
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 2000);
+                } else {
+                    // Nonaktifkan rotasi otomatis
+                    modelViewer.removeAttribute('auto-rotate');
+                    autoRotateButton.classList.remove('active');
+                    
+                    errorMessage.textContent = 'Rotasi otomatis dinonaktifkan';
+                    errorMessage.style.background = 'rgba(255, 165, 0, 0.7)';
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 2000);
+                }
+            }
+
             // Fungsi untuk mengatur mode AR
             function setupARMode() {
                 // Mode AR to Life (default)
@@ -1240,6 +1358,12 @@
                     modelViewer.setAttribute('shadow-intensity', '1');
                     modelViewer.setAttribute('exposure', '1');
                     
+                    // Tetap aktifkan rotasi otomatis 
+                    if (isAutoRotateActive) {
+                        modelViewer.setAttribute('auto-rotate', '');
+                        modelViewer.setAttribute('rotation-per-second', ROTATION_SPEED);
+                    }
+                    
                     errorMessage.textContent = 'Mode AR to Life: Studio musik di dunia nyata';
                     errorMessage.style.background = 'rgba(102, 126, 234, 0.7)';
                     errorMessage.style.display = 'block';
@@ -1258,6 +1382,12 @@
                     modelViewer.setAttribute('environment-image', 'legacy');
                     modelViewer.setAttribute('shadow-intensity', '1.5');
                     modelViewer.setAttribute('exposure', '0.8');
+                    
+                    // Tetap aktifkan rotasi otomatis 
+                    if (isAutoRotateActive) {
+                        modelViewer.setAttribute('auto-rotate', '');
+                        modelViewer.setAttribute('rotation-per-second', ROTATION_SPEED);
+                    }
                     
                     // Atur camera position untuk immersive view
                     setTimeout(() => {
@@ -1384,6 +1514,9 @@
             // Setup layar penuh
             setupFullscreen();
 
+            // Setup rotasi otomatis 
+            setupAutoRotate();
+
             // Setup mode AR
             setupARMode();
 
@@ -1401,24 +1534,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
