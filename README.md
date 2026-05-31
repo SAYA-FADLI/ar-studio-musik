@@ -1,4 +1,4 @@
-# 🎵 AR Studio Musik Interaktif
+# 🎵 AR Studio Musik
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Web%20AR-brightgreen.svg)](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API)
