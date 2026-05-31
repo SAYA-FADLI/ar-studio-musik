@@ -74,7 +74,7 @@ Pengalaman Augmented Reality (AR) interaktif yang menggabungkan visualisasi stud
 
 1. **Clone Repository**
 ```bash
-git clone https://github.com/portofoliodigital/ar-studio-musik.git
+git clone https://github.com/SAYA-FADLI/ar-studio-musik.git
 cd ar-studio-musik
 ```
 
