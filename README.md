@@ -172,7 +172,6 @@ ar-studio-musik/
 |---------|---------------------|--------|
 | **Kamera tidak muncul** | Izin ditolak | Klik ikon gembok di URL → Allow camera access |
 | **Model 3D tidak tampil** | Koneksi internet lambat | Refresh halaman, gunakan koneksi stabil |
-| **Suara instrumen tidak keluar** | Autoplay blocked | Klik/geser layar sekali untuk mengaktifkan audio |
 | **Performa lambat** | Banyak background apps | Tutup aplikasi lain, restart browser |
 | **AR tidak stabil** | Sensor perangkat terganggu | Kalibrasi gyroscope (biasanya dengan gerakan angka 8) |
 | **Gagal load model** | CORS issue | Host file di server dengan HTTPS |
