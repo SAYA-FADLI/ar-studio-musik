@@ -151,15 +151,13 @@ Virtual Environment + Immersive Experience
 ```
 ar-studio-musik/
 │
-├── index.html                 # QR code
-│
+├── ar-viewer.html             # Halaman utama
 ├── assets/                    # Folder assets
 │   ├── compressed_studio_musik.glb  # Model 3D
 │   ├── drum.mp3                     # Suara drum
 │   ├── keyboard.mp3                 # Suara keyboard
 │   └── guitar.mp3                   # Suara gitar
 │
-├── ar-viewer.html             # Halaman utama
 ├── .nojekyll                  # Agar folder assets tetap tersedia langsung di GitHub Pages
 └── README.md                  # Dokumentasi
 ```
@@ -208,7 +206,7 @@ MIT License - Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
 
 - **Dokumentasi**: [Model Viewer Docs](https://modelviewer.dev/)
 - **Issues**: [GitHub Issues](https://github.com/portofoliodigital/ar-studio-musik/issues)
-- **Demo Live**: [AR Studio Musik](https://portofoliodigital.github.io/ar-studio-musik)
+- **Demo Live**: [AR Studio Musik](https://portofoliodigital.github.io/ar-studio-musik/ar-viewer.html)
 
 ## 📚 Referensi
 
