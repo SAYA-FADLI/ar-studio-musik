@@ -97,7 +97,7 @@ npx http-server -p 8000
 ### Panduan Pengguna
 
 #### Langkah Awal
-1. **Izinkan Akses Kamera**: Pada prompt pertama, klik "Allow" untuk menggunakan fitur AR
+1. **Izinkan Akses Kamera**: Klik "Allow" untuk menggunakan fitur AR
 2. **Loading**: Tunggu indikator loading selesai (model 3D akan muncul)
 3. **Panduan**: Baca instruksi yang muncul (akan hilang otomatis setelah 7 detik)
 
