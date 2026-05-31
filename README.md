@@ -293,16 +293,6 @@ const defaultSounds = {
 
 MIT License - Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
 
-## 👥 Kontribusi
-
-Kontribusi selalu disambut! Silakan:
-
-1. Fork repository
-2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
 ## 📞 Dukungan
 
 - **Dokumentasi**: [Model Viewer Docs](https://modelviewer.dev/)
@@ -325,10 +315,6 @@ Kontribusi selalu disambut! Silakan:
 
 <div align="center">
 
-**Dibuat dengan ❤️ oleh Tim AR Studio Musik**
-
-[⬆ Back to Top](#-ar-studio-musik-interaktif)
+**Dibuat dengan ❤️ oleh Mohammad Fadli Mubarrok**
 
 </div>
-
-File README ini mencakup semua aspek penting proyek Anda, mulai dari instalasi, penggunaan, troubleshooting, hingga pengembangan lanjutan. Format Markdown yang profesional akan membantu pengguna dan kontributor memahami dan menggunakan aplikasi AR Studio Musik Anda dengan baik.
