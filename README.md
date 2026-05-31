@@ -164,8 +164,6 @@ ar-studio-musik/
 └── README.md                  # Dokumentasi
 ```
 
-```
-
 ## 🔧 Troubleshooting
 
 ### Masalah Umum & Solusi
