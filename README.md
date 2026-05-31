@@ -164,42 +164,6 @@ ar-studio-musik/
 └── README.md                  # Dokumentasi
 ```
 
-## ⚙️ Konfigurasi
-
-### Mengubah Model 3D
-```html
-<!-- Di file index.html, baris 154-164 -->
-<model-viewer
-    id="ar-model"
-    src="URL_MODEL_3D_ANDA"  <!-- Ganti dengan URL model Anda -->
-    ...
->
-```
-
-### Mengubah Suara Instrumen
-```javascript
-// Di bagian script, baris defaultSounds
-const defaultSounds = {
-    drum: {
-        element: document.getElementById('drum-sound'),
-        url: 'URL_SUARA_DRUM_ANDA'  // Ganti dengan URL MP3 Anda
-    },
-    // ...
-};
-```
-
-### Kecepatan Rotasi
-```javascript
-// Di bagian script, baris 242
-const ROTATION_SPEED = "15deg";  // Ubah sesuai keinginan (contoh: 20deg, 30deg)
-```
-
-### Warna Tema
-```css
-/* Di style section, ubah warna gradien */
-background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-/* Atau ganti warna tombol aktif */
-background: rgba(102, 126, 234, 0.8);  /* Ganti nilai RGB */
 ```
 
 ## 🔧 Troubleshooting
@@ -215,53 +179,8 @@ background: rgba(102, 126, 234, 0.8);  /* Ganti nilai RGB */
 | **AR tidak stabil** | Sensor perangkat terganggu | Kalibrasi gyroscope (biasanya dengan gerakan angka 8) |
 | **Gagal load model** | CORS issue | Host file di server dengan HTTPS |
 
-### Debug Mode
-Buka console browser (F12) untuk melihat error logs:
-```javascript
-// Log sukses yang seharusnya muncul:
-"Studio musik 3D siap!"
-"Setup X instrument buttons berhasil"
-"Rotasi otomatis diaktifkan dengan kecepatan: 15deg"
 ```
 
-## 🧪 Pengembangan
-
-### Menambahkan Instrumen Baru
-
-1. **Tambahkan button di HTML**:
-```html
-<button class="instrument-button" data-sound="piano">
-    <span class="instrument-icon">🎹</span>
-    <span class="instrument-name">Piano</span>
-</button>
-```
-
-2. **Tambahkan audio element**:
-```html
-<audio id="piano-sound" preload="auto">
-    <source src="assets/piano.mp3" type="audio/mpeg">
-</audio>
-```
-
-3. **Register di JavaScript**:
-```javascript
-const defaultSounds = {
-    // ... existing sounds
-    piano: {
-        element: document.getElementById('piano-sound'),
-        url: 'assets/piano.mp3'
-    }
-};
-```
-
-### Custom CSS Variables
-```css
-:root {
-    --primary-color: #667eea;
-    --secondary-color: #764ba2;
-    --overlay-bg: rgba(0, 0, 0, 0.7);
-    --transition-speed: 0.3s;
-}
 ```
 
 ## 🌐 Browser yang Didukung
@@ -269,13 +188,11 @@ const defaultSounds = {
 | Browser | Versi Minimal | AR Support | Audio Support |
 |---------|--------------|------------|----------------|
 | **Google Chrome** | 85+ | ✅ Full | ✅ Full |
-| **Safari** | 14+ (iOS) | ✅ Limited* | ✅ Full |
+| **Safari** | 14+ (iOS) | ✅ Limited | ✅ Full |
 | **Firefox** | 90+ | ✅ Basic | ✅ Full |
 | **Edge** | 90+ | ✅ Full | ✅ Full |
 | **Samsung Internet** | 14+ | ✅ Full | ✅ Full |
 | **Opera** | 70+ | ✅ Basic | ✅ Full |
-
-\* *Safari memerlukan HTTPS untuk akses kamera dan autoplay audio*
 
 ## 📊 Performance Metrics
 
@@ -284,7 +201,7 @@ const defaultSounds = {
 | **First Contentful Paint** | < 1.5s | ✅ ~1.2s |
 | **Time to Interactive** | < 3s | ✅ ~2.5s |
 | **3D Model Load** | < 2s (cached) | ✅ ~1.8s |
-| **Frame Rate** | 60 fps | ⚠️ 45-60 fps* |
+| **Frame Rate** | 60 fps | ⚠️ 45-60 fps |
 | **Memory Usage** | < 200MB | ✅ ~150MB |
 
 \* *Bergantung pada perangkat keras*
