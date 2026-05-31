@@ -148,6 +148,7 @@ Virtual Environment + Immersive Experience
 
 ## 📁 Struktur Proyek
 
+```
 ar-studio-musik/
 │
 ├── index.html                 # QR code
@@ -161,6 +162,7 @@ ar-studio-musik/
 ├── ar-viewer.html             # Halaman utama
 ├── .nojekyll                  # Agar folder assets tetap tersedia langsung di GitHub Pages
 └── README.md                  # Dokumentasi
+```
 
 ## 🔧 Troubleshooting
 
